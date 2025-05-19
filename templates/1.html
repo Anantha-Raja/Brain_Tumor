@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Classifier</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            color: #333;
+        }
+        .navbar {
+            background-color: #000;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            background: #fff;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            color: #000;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .content-section {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .text-content {
+            width: 60%;
+            text-align: left;
+        }
+        .image-content {
+            width: 35%;
+            text-align: right;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 15px;
+        }
+        .section-description {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .predict-section {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        .upload-section {
+            margin-top: 20px;
+        }
+        input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .btn {
+            background: #000;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background: #444;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+        }
+        img {
+            margin-top: 15px;
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .prediction-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #444;
+        }
+        .confidence {
+            color: #28a745;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#predict">Predict</a>
+    </div>
+
+    <!-- Home Page Content -->
+    <div id="home" class="container">
+        <h1>What is a Brain Stroke?</h1>
+        <div class="content-section">
+            <div class="text-content">
+                <h2 class="section-title">Understanding Brain Stroke</h2>
+                <p class="section-description">A brain stroke occurs when there is a sudden problem with the blood supply to the brain. This can be caused by a blockage or rupture of blood vessels. Brain strokes can cause serious damage to the brain, leading to permanent disability or even death.</p>
+
+                <h2 class="section-title">Why is Brain Stroke Important?</h2>
+                <p class="section-description">Brain strokes are one of the leading causes of death worldwide. Prompt diagnosis and treatment are essential for reducing the risk of permanent damage. Early detection and intervention can save lives and improve recovery outcomes. Recognizing the signs and symptoms of a stroke can help in getting timely medical attention.</p>
+            </div>
+            <div class="image-content">
+                <img src="brain_stroke_image.jpg" alt="Brain Stroke Image" style="max-width: 90%; border-radius: 10px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Predict Page Content -->
+    <div id="predict" class="container predict-section">
+        <h1>Upload an Image for AI Prediction</h1>
+        
+        <form class="upload-section" action="/" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button class="btn" type="submit">Predict</button>
+        </form>
+
+        {% if image_path %}
+        <div class="result">
+            <h2>Prediction Result</h2>
+            <img src="{{ image_path }}" alt="Uploaded Image">
+            <p class="prediction-text">{{ class_name }}</p>
+            <p class="confidence">Confidence Score: {{ confidence }}%</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

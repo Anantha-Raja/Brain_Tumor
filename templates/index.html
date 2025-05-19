@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Classifier - Brain Stroke Detection</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://scitechdaily.com/images/3D-Brain-Illustration.gif'); /* Add your background image URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+            backdrop-filter: blur(10px); /* Blur effect */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .navbar a:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* Container Styles */
+        .container {
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px); /* Blur effect */
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #FF6F61; /* Accent color */
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #FF6F61; /* Accent color */
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        /* Content Section */
+        .content-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .text-content {
+            width: 60%;
+            text-align: left;
+        }
+
+        .image-content {
+            width: 35%;
+            text-align: right;
+        }
+
+        .image-content img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Predict Section */
+        .predict-section {
+            margin-top: 40px;
+        }
+
+        .upload-section {
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 2px solid #FF6F61;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn {
+            background: #FF6F61;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #FF3B2F;
+            transform: translateY(-3px);
+        }
+
+        /* Result Section */
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .result img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .prediction-text {
+            font-size: 22px;
+            font-weight: bold;
+            color: #FF6F61;
+            margin-top: 15px;
+        }
+
+        .confidence {
+            font-size: 18px;
+            color: #28a745;
+            margin-top: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .text-content, .image-content {
+                width: 100%;
+                text-align: center;
+            }
+
+            .image-content img {
+                margin-top: 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#predict">Predict</a>
+    </div>
+
+    <!-- Home Page Content -->
+    <div id="home" class="container">
+        <h1>What is a Brain Stroke?</h1>
+        <div class="content-section">
+            <div class="text-content">
+                <h2>Understanding Brain Stroke</h2>
+                <p>A brain stroke occurs when there is a sudden problem with the blood supply to the brain. This can be caused by a blockage or rupture of blood vessels. Brain strokes can cause serious damage to the brain, leading to permanent disability or even death.</p>
+
+                <h2>Why is Brain Stroke Important?</h2>
+                <p>Brain strokes are one of the leading causes of death worldwide. Prompt diagnosis and treatment are essential for reducing the risk of permanent damage. Early detection and intervention can save lives and improve recovery outcomes. Recognizing the signs and symptoms of a stroke can help in getting timely medical attention.</p>
+            </div>
+            <div class="image-content">
+                <img src="https://gifdb.com/images/high/different-areas-of-the-brain-lw0o64lu63rc4g35.gif" alt="Brain Stroke Image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Predict Page Content -->
+    <div id="predict" class="container predict-section">
+        <h1>Upload an Image for AI Prediction</h1>
+        
+        <form class="upload-section" action="/" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button class="btn" type="submit">Predict</button>
+        </form>
+
+        {% if image_path %}
+        <div class="result">
+            <h2>Prediction Result</h2>
+            <img src="{{ image_path }}" alt="Uploaded Image">
+            <p class="prediction-text">{{ class_name }}</p>
+            <p class="confidence">Accuracy {{ confidence }}%</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
